@@ -24,6 +24,10 @@ Output: [1,2]
 
 
 
-
-class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+def twoSum(nums,target):
+    dict1 = {}
+    for i,num in enumerate (nums):
+        tar_num = target - num
+        if tar_num in dict1:
+            return [dict1[tar_num],i]
+        dict1[num] = i
