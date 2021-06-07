@@ -24,6 +24,8 @@ Output: [1,2]
 
 
 
+
+#method 1: dictionary
 def twoSum(nums,target):
     dict1 = {}
     for i,num in enumerate (nums):
@@ -31,3 +33,16 @@ def twoSum(nums,target):
         if tar_num in dict1:
             return [dict1[tar_num]+1,i+1]
         dict1[num] = i
+
+        
+#method 2: two-pointer      
+def twoSum(numbers,target):
+    l,r = 0, len(numbers) - 1
+    while l<r:
+        s = numbers[l] + numbers[r]
+        if s == target:
+            return [l+1,r+1]
+        elif s < target:
+            l = l+1
+        else: 
+            r = r-1
