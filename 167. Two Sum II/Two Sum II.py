@@ -29,5 +29,5 @@ def twoSum(nums,target):
     for i,num in enumerate (nums):
         tar_num = target - num
         if tar_num in dict1:
-            return [dict1[tar_num],i]
+            return [dict1[tar_num]+1,i+1]
         dict1[num] = i
