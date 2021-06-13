@@ -8,3 +8,6 @@ Output: 2
 Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
 """
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
