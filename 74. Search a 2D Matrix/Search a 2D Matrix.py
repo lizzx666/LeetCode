@@ -9,3 +9,22 @@ Output: true
 
 
 '''
+
+
+
+def searchMatrix(matrix, target):
+    m = len(matrix)
+    n = len(matrix[0])
+    left,right = 0, m*n-1
+    while left <= right:
+        pivot_index = (left+right)/2
+        #x//y round down to the nearest integer
+        pivot_element = matrix[pivot_index // n][pivot_index % n]
+        if target == pivot_element:
+            return True
+        else:
+            if target< pivot_element:
+                right = pivot_index - 1
+            else:
+                left = pivot_index + 1
+    return False
