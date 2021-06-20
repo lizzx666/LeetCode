@@ -38,6 +38,9 @@ Input: n = 1
 Output: 0
 """
 
-def binaryGap(N):
-    index = [i for i, v in enumerate(bin(N)) if v == '1']
-    return max([b - a for a, b in zip(index, index[1:])] or [0])
+
+
+
+def binaryGap(self, n: int) -> int:
+ index = [i for i, v in enumerate(bin(n)) if v == '1']
+ return max([b - a for a, b in zip(index, index[1:])] or [0])
