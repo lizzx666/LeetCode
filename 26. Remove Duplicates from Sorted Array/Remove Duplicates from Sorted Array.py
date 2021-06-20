@@ -41,3 +41,13 @@ Explanation: Your function should return k = 5, with the first five elements of 
 It does not matter what you leave beyond the returned k (hence they are underscores).
 
 """
+
+
+
+def removeDuplicates(self, nums: List[int]) -> int:
+    x = 1
+    for i in range(len(nums)-1):
+        if nums[i]!= nums[i+1]:
+            nums[x] = nums[i+1]
+            x+=1
+    return x
