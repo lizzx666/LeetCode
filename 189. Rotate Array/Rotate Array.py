@@ -31,7 +31,13 @@ class Solution:
         for i in range(len(new_nums)):
             new_nums[(i+k)%len(nums)] = nums[i]
         nums[:] = new_nums 
- 
+        
+ #or
+    def rotate(self, nums, k):
+        n = len(nums)
+        k = k % n
+        nums[:] = nums[n-k:] + nums[:n-k]
+
 #Method 2: Reverse
     def reverse(self,nums,start,end):
         while start<end:
