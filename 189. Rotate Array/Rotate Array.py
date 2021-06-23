@@ -20,3 +20,14 @@ rotate 1 steps to the right: [99,-1,-100,3]
 rotate 2 steps to the right: [3,99,-1,-100]
 
 '''
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        new_nums = [0]*len(nums)
+        for i in range(len(new_nums)):
+            new_nums[(i+k)%len(nums)] = nums[i]
+        nums[:] = new_nums 
