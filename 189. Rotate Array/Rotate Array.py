@@ -37,6 +37,8 @@ class Solution:
         n = len(nums)
         k = k % n
         nums[:] = nums[n-k:] + nums[:n-k]
+        #or
+        #nums[:] = nums[-k:]+nums[:-k]
 
 #Method 2: Reverse
     def reverse(self,nums,start,end):
