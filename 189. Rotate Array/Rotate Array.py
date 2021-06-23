@@ -21,7 +21,7 @@ rotate 2 steps to the right: [3,99,-1,-100]
 
 '''
 
-
+#Method 1: Extra Array
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """
@@ -31,3 +31,22 @@ class Solution:
         for i in range(len(new_nums)):
             new_nums[(i+k)%len(nums)] = nums[i]
         nums[:] = new_nums 
+ 
+#Method 2: Reverse
+    def reverse(self,nums,start,end):
+        while start<end:
+            nums[start],nums[end] = nums[end],nums[start]
+            start = start+1
+            end = end-1
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k%=n
+        self.reverse(nums,0,n-1)
+        self.reverse(nums,0,k-1)
+        self.reverse(nums,k,n-1)
+        
+
+      
