@@ -42,6 +42,7 @@ Output: ["0"]
 
 
 
+#method 1
 def summaryRanges(nums):
     if len(nums) == 0:
         return nums
@@ -67,4 +68,13 @@ def summaryRanges(nums):
         return n
 
 
-
+#method 2
+def summaryRanges(nums):
+    ranges,r = [],[]
+    for n in nums:
+        if n-1 not in r:
+            r = []
+            print(r)
+            ranges += r,
+        r[1:]=n,
+    return ['->'.join(map(str,r)) for r in ranges]
