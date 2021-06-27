@@ -42,3 +42,29 @@ Output: ["0"]
 
 
 
+def summaryRanges(nums):
+    if len(nums) == 0:
+        return nums
+    elif len(nums) == 1:
+        return list(map(str, nums))
+    else:
+        n = []
+        start, end = nums[0], nums[0]
+        for i in range(len(nums)-1):
+            if nums[i+1] == nums[i]+1:
+                end = nums[i+1]
+                if end == nums[-1]:
+                    n.append(str(start)+"->"+str(end))
+            elif nums[i+1] != nums[i]+1:
+                end = nums[i]
+                if start == end:
+                    n.append(str(end))
+                else:
+                    n.append(str(start)+"->"+str(end))
+                start, end = nums[i+1], nums[i+1]
+                if end == nums[-1]:
+                    n.append(str(end))        
+        return n
+
+
+
