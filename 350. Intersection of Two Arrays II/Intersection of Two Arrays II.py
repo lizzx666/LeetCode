@@ -16,6 +16,7 @@ Explanation: [9,4] is also accepted.
 
 
 def intersect(nums1,nums2):
+    import collections
     n = []
     counts = collections.Counter(nums1)
     for num in nums2:
