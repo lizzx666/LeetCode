@@ -11,3 +11,14 @@ Input: nums = [1], k = 1
 Output: [1]
 
 '''
+
+
+
+def topKFrequent(nums,k):
+    s = []
+    import collections 
+    counts = collections.Counter(nums)
+    sort_counts = sorted(counts.items(), key = lambda x: x[1], reverse = True)
+    for i in sort_counts:
+        s.append(i[0])
+    return s[:k]
