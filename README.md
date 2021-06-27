@@ -1,3 +1,3 @@
 # LeetCode
 
-Track for LeetCode Problems' practice.
+Track for LeetCode problems' practice.
