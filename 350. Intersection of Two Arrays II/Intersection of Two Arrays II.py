@@ -13,3 +13,13 @@ Output: [4,9]
 Explanation: [9,4] is also accepted.
 
 '''
+
+
+def intersect(nums1,nums2):
+    n = []
+    counts = collections.Counter(nums1)
+    for num in nums2:
+        if counts[num] > 0:
+            n.append(num)
+            counts[num] -= 1
+    return n
