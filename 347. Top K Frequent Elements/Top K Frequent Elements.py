@@ -32,3 +32,14 @@ def topKFrequent(nums,k):
         return nums
     counts = collections.Counter(nums)
     return heapq.nlargest(k,counts.keys(),key=counts.get)
+
+#Method 3
+def topKFrequent(nums,k):
+    import collections 
+    import itertools
+    bucket = [[] for i in range(len(nums)+1)]
+    count = collections.Counter(nums).items()
+    for num, freq in count:
+        bucket[freq].append(num)
+    flat_list = list(itertools.chain(*bucket))
+    return flat_list[::-1][:k]
