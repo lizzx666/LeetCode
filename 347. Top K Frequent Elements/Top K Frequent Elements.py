@@ -13,7 +13,7 @@ Output: [1]
 '''
 
 
-
+#Method 1
 def topKFrequent(nums,k):
     s = []
     import collections 
@@ -22,3 +22,13 @@ def topKFrequent(nums,k):
     for i in sort_counts:
         s.append(i[0])
     return s[:k]
+
+
+#Method 2
+def topKFrequent(nums,k):
+    import collections 
+    import heapq
+    if k == len(nums):
+        return nums
+    counts = collections.Counter(nums)
+    return heapq.nlargest(k,counts.keys(),key=counts.get)
