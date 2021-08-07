@@ -37,5 +37,4 @@ class Solution:
         for num in nums[1:]:
             current_subarray = max(current_subarray+num,num)
             max_subarray = max(current_subarray,max_subarray)
-
         return max_subarray
