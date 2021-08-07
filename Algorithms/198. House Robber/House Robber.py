@@ -21,3 +21,14 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
 Total amount you can rob = 2 + 9 + 1 = 12.
 
 '''
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:    
+        if not nums:
+            return 0
+        N = len(nums)
+        MaxRobbedAmount = [0]*(N+1)
+        MaxRobbedAmount[N],MaxRobbedAmount[N-1] = 0,nums[N-1]
+        for i in range(N-2,-1,-1):
+            MaxRobbedAmount[i] = max(MaxRobbedAmount[i+1],MaxRobbedAmount[i+2]+nums[i])
+        return MaxRobbedAmount[0]
