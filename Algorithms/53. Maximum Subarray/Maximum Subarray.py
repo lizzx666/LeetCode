@@ -19,3 +19,13 @@ Input: nums = [5,4,-1,7,8]
 Output: 23
 
 '''
+#Brute Force
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_subarray = -math.inf
+        for i in range(0,len(nums)):
+            current_subarray = 0
+            for j in range(i,len(nums)):
+                current_subarray += nums[j]
+                max_subarray = max(max_subarray,current_subarray)
+        return max_subarray
