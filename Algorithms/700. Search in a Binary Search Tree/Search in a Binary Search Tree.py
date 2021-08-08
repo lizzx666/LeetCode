@@ -26,3 +26,10 @@ class Solution:
         
         else:
             return self.searchBST(root.right,val)
+   
+#iteration
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        while root is not None and root.val != val:
+            root = root.left if val<root.val else root.right
+        return root
