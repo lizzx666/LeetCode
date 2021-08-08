@@ -30,3 +30,15 @@ Explanation: For example, here is one way to buy passes that lets you travel you
 On day 1, you bought a 30-day pass for costs[2] = $15 which covered days 1, 2, ..., 30.
 On day 31, you bought a 1-day pass for costs[0] = $2 which covered
 '''
+
+
+class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        durations = [1,7,30]
+        dp = [0 for i in range(days[-1]+1)]
+        for i in range(days[-1]+1):
+            if i not in days:
+                dp[i] = dp[i-1]
+            else:
+                dp[i] = min(dp[max(0,i-1)]+costs[0], dp[max(0,i-7)]+costs[1], dp[max(0,i-30)]+costs[2])
+        return dp[-1]
