@@ -14,3 +14,15 @@ Input: root = [4,2,7,1,3], val = 5
 Output: []
 
 '''
+
+#recursion
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if root is None or val==root.val:
+            return root
+        
+        elif val < root.val:
+            return self.searchBST(root.left,val)
+        
+        else:
+            return self.searchBST(root.right,val)
