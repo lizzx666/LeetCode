@@ -24,3 +24,23 @@ Input: nums = [0]
 Output: 0
 
 '''
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        elif len(nums)==1:
+            return nums[0]
+        else:
+            N = len(nums)
+            nums_1 = nums[1:]
+            nums_2 = nums[:N-1]
+            rob_1 = [0]*N
+            rob_2 = [0]*N
+            rob_1[N-1],rob_1[N-2] = 0,nums_1[N-2]
+            rob_2[N-1],rob_2[N-2] = 0,nums_2[N-2]
+            for i in range(N-3,-1,-1):
+                rob_1[i] = max(rob_1[i+1],rob_1[i+2]+nums_1[i])
+                rob_2[i] = max(rob_2[i+1],rob_2[i+2]+nums[i])
+    
+            return max(rob_1[0],rob_2[0])
