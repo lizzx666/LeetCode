@@ -16,3 +16,20 @@ Input: nums = [-2,0,-1]
 Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 '''
+
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        if len(nums)==0:
+            return 0
+        min_so_far = nums[0]
+        max_so_far = nums[0]
+        result = max_so_far
+    
+        for num in nums[1:]:
+            curr = num
+            temp_max = max(curr, max_so_far*curr, min_so_far*curr)
+            min_so_far = min(curr, max_so_far*curr, min_so_far*curr)
+            max_so_far = temp_max
+            result = max(result, max_so_far)
+        return result
