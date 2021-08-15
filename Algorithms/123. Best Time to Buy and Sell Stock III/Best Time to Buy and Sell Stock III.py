@@ -29,14 +29,12 @@ Input: prices = [1]
 Output: 0
 '''
 
-
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        t1_cost, t2_cost = float('inf'),float('inf')
-        t1_profit, t2_profit = 0,0
-        for price in prices:
-            t1_cost = min(t1_cost,price)
-            t1_profit = max(t1_profit, price-t1_cost)
-            t2_cost = min(t2_cost,price-t1_profit)
-            t2_profit = max(t2_profit,price-t2_cost)
-        return t2_profit
+def maxProfit(prices):
+    t1_buy, t2_buy = -float('inf'),-float('inf')
+    t1_sell, t2_sell = 0,0
+    for price in prices:
+        t1_buy = max(t1_buy,-price)
+        t1_sell = max(t1_sell, price+t1_buy)
+        t2_buy = max(t2_buy,t1_sell-price)
+        t2_sell = max(t2_sell,price+t2_buy)
+    return t2_sell
