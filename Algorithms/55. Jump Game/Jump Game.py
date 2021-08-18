@@ -15,3 +15,13 @@ Input: nums = [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
 '''
+
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        m = 0
+        for i,n in enumerate(nums):
+            if i>m:
+                return False
+            m = max(m,i+n)
+        return True
