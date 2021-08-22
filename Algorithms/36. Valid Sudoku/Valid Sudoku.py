@@ -38,7 +38,7 @@ Explanation: Same as Example 1, except with the 5 in the top left corner being m
 
 '''
 
-
+#j is column number, i is row number
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         seen = []
