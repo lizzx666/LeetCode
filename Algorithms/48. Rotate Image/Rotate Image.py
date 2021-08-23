@@ -40,6 +40,7 @@ Output: [[3,1],[4,2]]
  * 7 8 9     9 8 7     1 4 7
  '''
 
+#clockwise rotate
 #if no need to return
 def rotate(matrix):
     matrix.reverse()
@@ -60,4 +61,30 @@ def rotate(matrix):
             matrix[i][j] = matrix[j][i]
             matrix[j][i] = tmp
     return matrix
+
+   
+#anti-clockwise rotate
+#if no need to return
+def rotate(matrix):
+    n = len(matrix)
+    for i in range(n):
+        matrix[i].reverse()
+        
+    for i in range(n):
+        for j in range(i):
+            tmp = matrix[i][j]
+            matrix[i][j] = matrix[j][i]
+            matrix[j][i] = tmp
+          
+
+#if need to return
+def rotate(matrix):
+    matrix = [row[::-1] for row in matrix]
+    n = len(matrix)
+    for i in range(n):
+        for j in range(i):
+            tmp = matrix[i][j]
+            matrix[i][j] = matrix[j][i]
+            matrix[j][i] = tmp
+    return matrix   
 
