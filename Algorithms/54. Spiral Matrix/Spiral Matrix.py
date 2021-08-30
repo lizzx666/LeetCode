@@ -13,6 +13,42 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 
 '''
 
+#own solution
+def spiralOrder(matrix):
+    new = []
+    m = len(matrix)
+    n = len(matrix[0])
+    up,down =0, m-1
+    left,right = 0,n-1
+    while up<=down and left<=right and len(new)<m*n:
+        #top left to right
+        
+        new.extend(matrix[up][left:right+1])
+ 
+        
+        #right up to down
+        new.extend(row[right] for row in matrix[up+1:down+1])
+
+        
+        if up!=down:
+        #bottom right to left
+            new.extend(matrix[down][left:right][::-1])
+
+
+        #left down to up
+        if left !=right:
+            new.extend(row[left] for row in matrix[up+1:down][::-1])
+            
+        left +=1
+        right -=1
+        up+=1
+        down -=1
+
+
+    return new
+
+
+#answer
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         result = []
