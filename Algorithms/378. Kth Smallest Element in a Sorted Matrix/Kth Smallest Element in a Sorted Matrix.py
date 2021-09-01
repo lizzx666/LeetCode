@@ -14,3 +14,18 @@ Example 2:
 Input: matrix = [[-5]], k = 1
 Output: -5
 '''
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        import heapq
+        n = len(matrix)
+        minheap = []
+        for r in range(min(n,k)):
+            minheap.append((matrix[r][0],r,0))
+        heapq.heapify(minheap)
+        while k:
+            element, r, c = heapq.heappop(minheap)
+            if c < n-1:
+                heapq.heappush(minheap,(matrix[r][c+1],r,c+1))
+            k -= 1
+        return element
