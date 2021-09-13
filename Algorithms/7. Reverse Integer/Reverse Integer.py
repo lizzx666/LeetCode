@@ -21,7 +21,7 @@ Input: x = 0
 Output: 0
 '''
 
-
+#solution 1:
 class Solution:
     def reverse(self, x: int) -> int:
         if x < 0:
@@ -36,3 +36,10 @@ class Solution:
                 return 0
             else:
                 return x1
+            
+#solution 2:           
+class Solution:
+    def reverse(self, x: int) -> int:
+        sign = [1,-1][x<0]
+        res = sign*int(str(abs(x))[::-1])
+        return res if -2**31<=res<=2**31-1 else 0
