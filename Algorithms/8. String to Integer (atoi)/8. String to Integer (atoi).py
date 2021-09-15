@@ -85,3 +85,21 @@ Step 3: "-91283472332" ("91283472332" is read in)
 The parsed integer is -91283472332.
 Since -91283472332 is less than the lower bound of the range [-2^31, 2^31 - 1], the final result is clamped to -2^31 = -2147483648.
 '''
+
+
+class Solution:
+    def myAtoi(self, s: str) -> int:    
+        import re
+        s = s.strip()
+        s = re.findall('^[+\-]?\d+',s)
+        try:
+            res = int(''.join(s))
+            max_num = 2**31-1
+            min_num = -2**31
+            if res > max_num:
+                return max_num
+            if res < min_num:
+                return min_num
+            return res
+        except:
+            return 0 
