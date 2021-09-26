@@ -25,3 +25,21 @@ Input: haystack = "", needle = ""
 Output: 0
 
 '''
+
+
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if needle == "":
+            return 0
+        s = len(needle)
+        t = len(haystack)
+        if s > t:
+            return -1
+        if s == t and needle == haystack:
+            return 0
+
+        for i in range(0,t-s+1):
+            if haystack[i:i+s] == needle:
+                return i
+                break
+        return -1
