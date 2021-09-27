@@ -16,3 +16,15 @@ Output: ""
 Explanation: There is no common prefix among the input strings.
 
 '''
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        shortest = min(strs,key = len)
+        for i, ch in enumerate(shortest):
+            for k in strs:
+                if k[i] != ch:
+                    return shortest[:i]
+        return shortest
