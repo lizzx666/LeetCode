@@ -43,8 +43,25 @@ Explanation: 1 is the only number that appears consecutively for at least three 
 
 # Write your MySQL query statement below
 
+#method 1
 select Distinct l1.Num as ConsecutiveNums
 from Logs l1, Logs l2, Logs l3
 where l1.Id = l2.Id-1
 and l2.Id = l3.Id-1
 and l1.Num = l2.Num and l2.Num = l3.Num
+
+
+
+#method 2
+select distinct num as consecutiveNums
+from (
+select num,
+sum(c) over (order by id) as flag 
+from 
+(select id, 
+num, 
+case when LAG(Num) OVER (order by id)- Num = 0 then 0 else 1 end as c
+from logs) a
+)b
+group by num,flag
+having count(*) >=3
