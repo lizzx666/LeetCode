@@ -28,9 +28,24 @@ Input: s = "{[]}"
 Output: true
 '''
 
-
+#method 1:
 class Solution:
     def isValid(self, s: str) -> bool:
         while "()" in s or "{}" in s or "[]" in s:
             s = s.replace("()","").replace("{}","").replace("[]","")
         return s == ''
+
+#method 2:
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        dict_1 = {"]":"[",")":"(","}":"{"}
+        for char in s:
+            if char in dict_1.values():
+                stack.append(char)
+            elif char in dict_1.keys():
+                if stack == [] or dict_1[char] != stack.pop():
+                    return False
+            else:
+                return False
+        return stack == []
