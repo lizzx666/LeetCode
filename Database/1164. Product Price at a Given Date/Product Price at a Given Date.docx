@@ -43,8 +43,9 @@ Result table:
 select t1.product_id,
 coalesce(t2.new_price,10) as price
 from
-(select distinct product_id
-from Products) t1
+(select product_id
+from Products
+group by product_id) t1
 left join
 (select product_id,
  new_price
