@@ -16,8 +16,13 @@ Output: 4
 '''
 
 
-
+# O(k+(n-k)lgk) time, min-heap  
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         import heapq
         return heapq.nlargest(k,nums,key = None)[-1]
+    
+
+# O(nlgn) time
+def findKthLargest1(self, nums, k):
+    return sorted(nums, reverse=True)[k-1]
