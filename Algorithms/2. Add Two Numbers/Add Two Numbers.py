@@ -19,3 +19,61 @@ Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
 Output: [8,9,9,9,0,0,0,1]
 
 '''
+
+
+  
+  
+  
+  
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        carry = 0
+        res = n = ListNode(0)
+        while l1 or l2 or carry:
+            if l1:
+                carry += l1.val
+                l1 = l1.next
+            if l2:
+                carry += l2.val
+                l2 = l2.next
+                
+            #divmod(a,b) = (a//b,a%b)
+            carry, val = divmod(carry,10)
+
+            n.next = ListNode(val)
+            
+            n = n.next
+        return res.next
+
+#https://stackoverflow.com/questions/56515975/python-logic-of-listnode-in-leetcode
+'''  
+result = ListNode(0)
+#r
+#0 -> None
+
+result_tail = result
+#r
+#0 -> None
+#rt
+
+result_tail.next = ListNode(1)
+#r
+#0 -> 1 -> None
+#rt
+
+result_tail = result_tail.next
+#r
+#0 -> 1 -> None
+#     rt
+
+result_tail.next = ListNode(2)
+#r
+#0 -> 1 -> 2 -> None
+#     rt
+
+result_tail = result_tail.next
+#r
+#0 -> 1 -> 2 -> None
+#          rt
+'''
