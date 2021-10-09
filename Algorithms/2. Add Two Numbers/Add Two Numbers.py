@@ -40,10 +40,10 @@ class Solution:
                 
             #divmod(a,b) = (a//b,a%b)
             carry, val = divmod(carry,10)
-
             n.next = ListNode(val)
-            
             n = n.next
+            #or can be replaced by : n.next = n = ListNode(val)
+            
         return res.next
 
 #https://stackoverflow.com/questions/56515975/python-logic-of-listnode-in-leetcode
