@@ -34,7 +34,7 @@ myStack.empty(); // return False
 
 
 
-
+#method 1:
 class MyStack:
 
     def __init__(self):
@@ -61,6 +61,48 @@ class MyStack:
         Get the top element.
         """
         return self.q1[-1]
+        
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return not len(self.q1)
+      
+ #method 2:
+ 
+ class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.q1 = collections.deque()
+        
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        
+        q = self.q1
+        q.append(x)
+        for _ in range(len(q)-1):
+            q.append(q.popleft())
+        
+
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        return self.q1.popleft()
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.q1[0]
         
 
     def empty(self) -> bool:
