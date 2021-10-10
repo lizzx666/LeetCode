@@ -30,7 +30,7 @@ Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 
 '''
 
-
+#method 1:
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         n = len(nums)
@@ -43,3 +43,16 @@ class Solution:
             left += 1
             right -= 1
         return min_num
+
+#method 2:
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        n = len(nums)
+        left, right = 0,n-1
+        while left < right:
+            mid = (left+right)//2
+            if nums[mid] > nums[right]:
+                left = mid+1
+            else:
+                right = mid
+        return nums[left]
