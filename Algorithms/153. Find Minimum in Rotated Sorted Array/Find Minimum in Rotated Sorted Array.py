@@ -29,3 +29,17 @@ Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 
 
 '''
+
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 1:
+            return nums[0]
+        left, right = 0,n-1
+        min_num = float('inf')
+        while left <= right:
+            min_num = min(min_num,nums[left],nums[right])
+            left += 1
+            right -= 1
+        return min_num
