@@ -20,3 +20,12 @@ Explanation: Pick numbers 1, 3, 4 and 4 their sum is 12 (maximum sum divisible b
 
 
 '''
+
+
+class Solution:
+    def maxSumDivThree(self, nums: List[int]) -> int:
+        dp = [0,0,0]
+        for a in nums:
+            for i in dp[:]:
+                dp[(i+a)%3] = max(dp[(i+a)%3],i+a)
+        return dp[0]
