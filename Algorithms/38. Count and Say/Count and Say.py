@@ -30,3 +30,22 @@ countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 
 
 '''
+
+
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        s = '1'
+        for i in range(n-1):
+            count = 1
+            temp = []
+            for i in range(1,len(s)):
+                if s[i]==s[i-1]:
+                    count += 1
+                else:
+                    temp.append(str(count))
+                    temp.append(s[i-1])
+                    count = 1
+            temp.append(str(count))
+            temp.append(s[-1])
+            s = ''.join(temp)
+        return s
