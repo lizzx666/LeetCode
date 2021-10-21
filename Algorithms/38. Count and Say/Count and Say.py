@@ -36,12 +36,12 @@ class Solution:
         for i in range(n-1):
             count = 1
             temp = []
-            for i in range(1,len(s)):
-                if s[i]==s[i-1]:
+            for t in range(1,len(s)):
+                if s[t]==s[t-1]:
                     count += 1
                 else:
                     temp.append(str(count))
-                    temp.append(s[i-1])
+                    temp.append(s[t-1])
                     count = 1
             temp.append(str(count))
             temp.append(s[-1])
