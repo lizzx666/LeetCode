@@ -8,8 +8,6 @@ Then for each group, say the number of characters, then say the character.
 To convert the saying into a digit string, replace the counts with a number and concatenate every saying.
 
 For example, the saying and conversion for digit string "3322251":"23321511"
-
-
 Given a positive integer n, return the nth term of the count-and-say sequence.
 
  
