@@ -30,3 +30,13 @@ class Solution:
             curr_node.next = prev_node
             prev_node = curr_node
         return prev_node
+    
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev, curr = None, head
+        while curr:
+            nextt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextt
+        return prev
