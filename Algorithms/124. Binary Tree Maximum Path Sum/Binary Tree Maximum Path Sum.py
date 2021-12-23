@@ -21,3 +21,22 @@ Output: 42
 Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
 
 '''
+
+
+class Solution:
+    def __init__(self):
+        self.maxSum = float("-inf")
+        
+    def maxPathSum(self, root: TreeNode) -> int:
+        def maxGain(node):
+            if not node:
+                return 0
+            left = max(0,maxGain(node.left))
+            right = max(0,maxGain(node.right))
+            price_path = left + right + node.val
+            
+            self.maxSum = max(self.maxSum,price_path)
+            return node.val + max(left,right)
+        
+        maxGain(root)
+        return self.maxSum
