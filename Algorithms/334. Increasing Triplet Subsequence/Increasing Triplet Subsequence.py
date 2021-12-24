@@ -32,3 +32,20 @@ class Solution:
             else:
                 return True
         return False
+
+#use binary search
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        import bisect
+        sub = [nums[0]]
+        for num in nums:
+            i = bisect.bisect_left(sub,num)
+            if i==len(sub):
+                sub.append(num)
+            else:
+                sub[i] = num
+            if len(sub)==3:
+                return True
+                break
+                
+        return False
