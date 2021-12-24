@@ -21,7 +21,7 @@ Output: 1
 
 '''
 
-
+#dp
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         dp = [1]*len(nums)
@@ -30,3 +30,19 @@ class Solution:
                 if nums[j] < nums[i]:
                     dp[i] = max(dp[i],dp[j]+1)
         return max(dp)
+       
+       
+#create sub array and use binary search       
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        sub = []
+        for num in nums:
+            i = bisect_left(sub, num)
+        #insert at last, which means num is greater than any element in sub
+            if i== len(sub):
+                sub.append(num)
+            
+            else:
+                sub[i] = num
+        
+        return len(sub)
