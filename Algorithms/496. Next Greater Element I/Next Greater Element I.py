@@ -27,3 +27,17 @@ Explanation: The next greater element for each value of nums1 is as follows:
 - 4 is underlined in nums2 = [1,2,3,4]. There is no next greater element, so the answer is -1.
 
 '''
+
+
+#Brute Force
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        m,n = len(nums1), len(nums2)
+        res = [0]*m
+        for i in range(m):
+            j = nums2.index(nums1[i])
+            k = j+1
+            while k < n and nums2[k] < nums2[j]:
+                k+=1
+            res[i] = nums2[k] if k < n else -1
+        return res
