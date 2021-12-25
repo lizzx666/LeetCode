@@ -20,6 +20,7 @@ Input: arr = [1,7], k = 1
 Output: [1,7]
 
 '''
+#Binary Search + Double Pointer
 class Solution:
     def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
         #find a number that exactly K prime fractions smaller than this number
