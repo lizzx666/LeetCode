@@ -20,3 +20,14 @@ Input: arr = [1,7], k = 1
 Output: [1,7]
 
 '''
+
+#Brute Force
+class Solution:
+    def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
+        import heapq
+        n = len(arr)
+        s = {}
+        for i in range(n-1):
+            for j in range(i+1,n):
+                s[arr[i],arr[j]] = arr[i]/arr[j]      
+        return heapq.nsmallest(k,s,key = s.get)[-1]
