@@ -18,3 +18,19 @@ Input: s = "eccbbbbdec"
 Output: [10]
 
 '''
+
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        dic = {l:index for index,l in enumerate(s)}
+        num = 0
+        result = []
+        j = dic[s[0]]
+        
+        for i in range(len(s)):
+            num += 1
+            if dic[s[i]] > j:
+                j = dic[s[i]]
+            if i==j:
+                result.append(num)
+                num = 0
+        return result
