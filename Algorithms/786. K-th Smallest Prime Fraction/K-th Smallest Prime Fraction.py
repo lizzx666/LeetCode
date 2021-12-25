@@ -20,6 +20,36 @@ Input: arr = [1,7], k = 1
 Output: [1,7]
 
 '''
+class Solution:
+    def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
+        #find a number that exactly K prime fractions smaller than this number
+        #and the kth of this fractions is the number we want
+        
+        n = len(arr)
+        left, right = 0.0, 1.0
+        while True:
+            mid = (left + right)/2
+            i, count = -1,0
+            x,y = 0,1
+            for j in range(1,n):
+                
+                while arr[i+1]/arr[j] < mid:
+                    i+=1
+                    #update max fraction
+                    if arr[i]*y>arr[j]*x: #arr[i]/arr[j] > x/y
+                        x,y = arr[i],arr[j]
+                count += i+1
+        
+            if count == k:
+                return [x,y]
+        
+            elif count < k:
+                left = mid
+            
+            else:
+                right = mid
+
+
 
 #Brute Force
 class Solution:
