@@ -25,13 +25,6 @@ class Solution:
             nums2 = temp
         m = len(nums1)
         n = len(nums2)
-        '''
-        if m==0:
-            if n %2 ==1:
-                return nums2[n//2]
-            else:
-                return (nums2[n//2] + nums2[(n+1)//2])/2
-        '''
         #total_left_count = (n+m+1)/2
         #if (n+m)%2==0 then total_left should be (n+m)/2 which is same as (n+m+1)//2
         #if (n+m)%2==1 then total_left should be (n+m+1)//2
