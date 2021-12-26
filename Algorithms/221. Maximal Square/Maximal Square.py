@@ -26,7 +26,8 @@ class Solution:
         if m == 0 or n==0:
             return 0 
         dp = [[0 for _ in range(n)] for _ in range(m)]
-        #dp = [[0]*n for _ in range(m)]
+        #dp = [[0]*n for _ in range(m)] (correct)
+        #dp = [[0]*n]*m] (incorrect, cannot write like this)
         max_side = 0
         for i in range(m):
             for j in range(n):
