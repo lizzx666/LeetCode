@@ -21,3 +21,28 @@ Input: grid = [[0,0,0,0,0,0,0,0]]
 Output: 0
 
 '''
+
+
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+        max_area = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]==1:
+                    max_area = max(self.dfs(grid,i,j),max_area)
+        return max_area
+        
+    def dfs(self,grid,i,j):
+        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j]!=1:
+            return 0
+        
+        grid[i][j] = 0  
+        area = 1
+        for di, dj in [[-1,0],[1,0],[0,-1],[0,1]]:
+            next_i,next_j = i+di,j+dj
+            area += self.dfs(grid,next_i,next_j)
+
+        return area
