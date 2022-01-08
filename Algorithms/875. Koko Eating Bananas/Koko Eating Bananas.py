@@ -26,3 +26,32 @@ Output: 23
 
 
 '''
+
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        import math
+        n = len(piles)
+        left = 1
+        right = max(piles)
+        
+        def can_finish(piles,h,k):
+            n = len(piles)
+            total_time = 0
+            for i in range(n):
+                if piles[i]<=k:
+                    total_time += 1
+                else:
+                    total_time += math.ceil(piles[i]/k)
+            if total_time > h:
+                return False
+            return True
+        
+        
+        while left<right:
+            mid = left+(right-left)//2
+            if can_finish(piles,h,mid):
+                right = mid
+            else:
+                left = mid+1
+        return left
