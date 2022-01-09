@@ -24,3 +24,34 @@ Example 3:
 Input: nums = [1], target = 0
 Output: -1
 '''
+
+
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        if not nums:
+            return -1
+        n = len(nums)
+        left = 0
+        right = n-1
+        while left<=right:
+            mid = left + (right-left)//2
+            if nums[mid]==target:
+                return mid
+            
+            #if left side is sorted
+            if nums[0]<=nums[mid]:
+                if nums[0]<=target<nums[mid]:
+                    right = mid-1
+                #if target not in sorted part, then check the un-sorted part
+                else:
+                    left = mid+1
+                    
+            #else right side is sorted
+            else:
+                if nums[mid]<target<=nums[n-1]:
+                    left = mid+1
+                #if target not in sorted part, then check the un-sorted part
+                else:
+                    right = mid-1
+        return -1
