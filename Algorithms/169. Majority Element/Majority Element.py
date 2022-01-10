@@ -21,3 +21,10 @@ class Solution:
         from collections import Counter
         dict_1 = Counter(nums)
         return [k for k,v in dict_1.items() if v>= len(nums)/2][0]
+  
+  
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        from collections import Counter
+        dict_1 = Counter(nums)
+        return max(dict_1.keys(), key = dict_1.get)
