@@ -24,6 +24,37 @@ Explanation: We can keep the number without any swaps.
 
 '''
 
+
+class Solution:
+    def minInteger(self, num: str, k: int) -> str:
+        from collections import defaultdict, deque
+        from sortedcontainers import SortedList
+        from string import digits
+        d = defaultdict(deque)
+        for i,a in enumerate(num):
+            d[a].append(i)
+        ans, seen = '',SortedList()
+        for _ in range(len(num)):
+            for a in digits:
+                if d[a]:  
+                    i = d[a][0]
+                    #get current position of target a
+                    #len(seen) - seen.bisect(i) return how many of digits have been moved in front
+                    ni = i+(len(seen)-seen.bisect(i))
+                    #calculate distance need to be moved
+                    dis = ni - len(seen)
+
+                    if dis<=k:
+                        k-=dis
+                        d[a].popleft()
+                        ans+=a
+                        seen.add(i)
+                        break
+        return ans
+
+
+
+
 #Brute Force
 #O(n^2), O(n)
 
