@@ -31,3 +31,63 @@ myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
 
 
 '''
+
+
+
+
+
+class Node:
+    def __init__(self, key = -1, val = -1, next = None):
+        self.key = key
+        self.val = val
+        self.next = next
+
+
+
+class MyHashMap:
+
+    def __init__(self):
+        self.data = [Node() for _ in range(1000)]
+
+        
+    def hashcode(self, key):
+        size = len(self.data)
+        return key%size
+    
+    
+    def put(self, key: int, value: int) -> None:
+        hashcode = self.hashcode(key)
+        head = self.data[hashcode]
+        
+        while head.next:
+            if head.next.key == key:
+                head.next.val = value
+                return
+            head = head.next
+        head.next = Node(key, value)
+
+        
+        
+
+    def get(self, key: int) -> int:
+        hashcode = self.hashcode(key)
+        head = self.data[hashcode]
+        while head.next:
+            if head.next.key == key:
+                return head.next.val
+            head = head.next
+        return -1
+
+        
+
+    def remove(self, key: int) -> None:
+        hashcode = self.hashcode(key)
+        head = self.data[hashcode]
+        
+        while head.next:
+            if head.next.key == key:
+                toremove = head.next
+                head.next = toremove.next
+                toremove.next = None
+                return
+            head = head.next
