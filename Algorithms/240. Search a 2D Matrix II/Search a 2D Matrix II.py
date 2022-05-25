@@ -17,3 +17,26 @@ Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,
 Output: false
 
 '''
+
+
+
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m = len(matrix)
+        n = len(matrix[0])
+    
+        i = m-1
+        j = 0
+    
+        while i>=0 and j<=n-1:
+            if matrix[i][j]==target:
+                return True
+        
+            elif matrix[i][j]<target:
+                j+=1
+        
+            elif matrix[i][j]> target:
+                i-=1
+            
+        return False
