@@ -23,3 +23,37 @@ Output: []
 
 
 '''
+
+
+class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        m = len(firstList)
+        n = len(secondList)
+        i=j=0
+        result = []
+        while i<=m-1 and j<=n-1:
+            if firstList[i][0] <= secondList[j][0]:
+                if firstList[i][1] < secondList[j][0]:
+                    i+=1
+                elif secondList[j][0] <= firstList[i][1] <= secondList[j][1]:
+                    result.append([secondList[j][0], firstList[i][1]])
+                    i+=1
+            
+                else: 
+                    result.append([secondList[j][0],secondList[j][1]])
+                    j+=1
+        
+            elif firstList[i][0] > secondList[j][0]:
+                if secondList[j][1] < firstList[i][0]:
+                    j+=1
+            
+                elif firstList[i][0] <= secondList[j][1] <= firstList[i][1]:
+                    result.append([firstList[i][0],secondList[j][1]])
+                    j+=1
+ 
+                else:
+                    result.append([firstList[i][0],firstList[i][1]])
+                    i+=1
+
+    
+        return result 
