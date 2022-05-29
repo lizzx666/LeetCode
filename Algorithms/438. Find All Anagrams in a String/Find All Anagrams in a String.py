@@ -22,3 +22,29 @@ The substring with start index = 1 is "ba", which is an anagram of "ab".
 The substring with start index = 2 is "ab", which is an anagram of "ab".
 
 '''
+
+
+class Solution:
+      
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        ns, np = len(s), len(p)
+        if np>ns:
+            return []
+        
+        result = []
+
+        p_count = Counter(p)
+        s_count = Counter()
+        
+        for i in range(ns):
+            s_count[s[i]]+=1
+            
+            if i>=np:
+                if s_count[s[i-np]]==1:
+                    del s_count[s[i-np]]
+                else:
+                    s_count[s[i-np]]-=1
+                
+            if p_count == s_count:
+                result.append(i-np+1)
+        return result
