@@ -21,3 +21,20 @@ Input: target = 11, nums = [1,1,1,1,1,1,1,1]
 Output: 0
 
 '''
+
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        n = len(nums)
+        min_cnt = n+1
+
+        left = 0
+        curr_sum = 0
+        
+        for i in range(n):
+            curr_sum += nums[i]
+            while curr_sum >= target:
+                min_cnt = min(min_cnt,i-left+1)
+                curr_sum -= nums[left]
+                left+=1
+        return min_cnt if min_cnt<= n else 0
