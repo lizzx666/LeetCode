@@ -17,3 +17,16 @@ Input: num = 0
 Output: 0
 
 '''
+
+
+
+
+class Solution:
+    def addDigits(self, num: int) -> int:
+        while num > 9:
+            result = 0
+            while num:
+                result += num%10
+                num = num//10
+            num = result
+        return num
