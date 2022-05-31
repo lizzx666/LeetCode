@@ -25,3 +25,24 @@ Output: 3
 
 
 '''
+
+
+
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        m = len(isConnected)
+        visited = set()
+        cnt = 0
+        
+        def dfs(i):
+            for j in range(m):
+                if isConnected[i][j]==1 and j not in visited:
+                    visited.add(j)
+                    dfs(j)
+        
+        for i in range(m):
+            if i not in visited:
+                dfs(i)
+                cnt +=1
+        return cnt
