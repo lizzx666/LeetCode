@@ -17,3 +17,18 @@ Input: root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
 Output: false
 
 '''
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        def convert(p):
+            return "^" + str(p.val) + "#" + convert(p.left) + convert(p.right) if p else "$"
+        
+        return convert(subRoot) in convert(root) 
