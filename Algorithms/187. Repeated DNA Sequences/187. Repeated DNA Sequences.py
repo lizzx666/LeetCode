@@ -20,3 +20,18 @@ Output: ["AAAAAAAAAA"]
 
 
 '''
+
+
+
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        l, n = 10, len(s)
+        seen = set()
+        output = set()
+        
+        for i in range(n-l+1):
+            tmp = s[i:i+l]
+            if tmp in seen:
+                output.add(tmp[:])
+            seen.add(tmp)
+        return output
