@@ -41,6 +41,24 @@ class Solution:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+
+#recursion
+class Solution:
+    
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        def reverse(curr,pre):
+            if not curr:
+                return pre
+            temp = curr.next
+            curr.next = pre
+            return reverse(temp,curr)
+        return reverse(head,None)
+
+
+
+#double pointer
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         prev_node = None
