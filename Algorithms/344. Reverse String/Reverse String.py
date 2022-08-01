@@ -20,6 +20,21 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
+        n = len(s)
+        i=0
+        j=n-1
+        while i<n/2:
+            s[i],s[j]=s[j],s[i]
+            i+=1
+            j-=1
+
+
+
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
         head = 0
         tail = len(s)-1
         while head <= tail:
