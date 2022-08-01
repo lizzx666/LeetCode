@@ -17,3 +17,22 @@ Output: "bacd"
 
 
 '''
+
+
+
+class Solution:
+    def reverseStr(self, s: str, k: int) -> str:
+        n = len(s)
+        def reverse_substr(text):
+            left = 0
+            right = len(text)-1
+            while left<right:
+                text[left],text[right]=text[right],text[left]
+                left+=1
+                right-=1
+            return text
+        
+        res = list(s)
+        for i in range(0,n,2*k):
+            res[i:i+k] = reverse_substr(res[i:i+k])
+        return ''.join(res)
