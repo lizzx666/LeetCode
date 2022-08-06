@@ -49,3 +49,27 @@ class Solution:
                 
         backtracking(s,0)
         return result
+       
+       
+       
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        path = []
+        result = []
+
+        def backtracking(s,startindex):
+            if startindex>=len(s):
+                result.append(path[:])
+                return
+            for i in range(startindex,len(s)):
+                temp = s[startindex:i+1]
+                if temp == temp[::-1]:
+                    path.append(temp)
+                    backtracking(s,i+1)
+                    path.pop()
+                else:
+                    continue
+                
+                
+        backtracking(s,0)
+        return result
