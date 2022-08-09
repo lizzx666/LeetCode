@@ -21,6 +21,33 @@ Output: 1
 
 '''
 
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+#actually here is post order traversal (left,right,mid)
+#as the max depth of the tree is same as the height of the root
+#so below code actually is to get the height of the root
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        return self.getdepth(root)
+    
+    def getdepth(self,node):
+        if not node:
+            return 0
+
+        leftdepth = self.getdepth(node.left)
+        rightdepth = self.getdepth(node.right)
+        depth = 1 + max(leftdepth,rightdepth)
+        return depth
+        
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
