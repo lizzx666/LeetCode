@@ -27,6 +27,40 @@ Output: 0
 '''
 
 
+
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        a = len(needle)
+        b = len(haystack)
+        if a==0:
+            return 0
+        next = self.getnext(needle)
+        j = 0
+        for i in range(b):
+            while j>0 and needle[j]!=haystack[i]:
+                j = next[j-1]
+            if needle[j]==haystack[i]:
+                j+=1
+            if j==a:
+                return i-a+1
+        return -1
+                
+        
+    def getnext(self,needle):
+        n = len(needle)
+        next = [0]*n
+        j = 0
+        for i in range(1,n):
+            while j>0 and needle[i]!=needle[j]:
+                j = next[j-1]
+            if needle[i]==needle[j]:
+                j+=1
+            next[i]=j
+        return next
+       
+       
+
+
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         if needle == "":
