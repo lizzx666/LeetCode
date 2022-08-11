@@ -19,6 +19,23 @@ Explanation: It is the substring "abc" four times or the substring "abcabc" twic
 
 '''
 
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        n = len(s)
+        next = [0]*n
+        j = 0
+        for i in range(1,n):
+            while j>0 and s[i]!=s[j]:
+                j = next[j-1]
+            if s[i]==s[j]:
+                j+=1
+            next[i]=j
+
+        l = next[-1]
+        print(next)
+        return l!=0 and n%(n-l)==0
+
+
 
 class Solution:
     def repeatedSubstringPattern(self, s: str) -> bool:
