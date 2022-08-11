@@ -28,6 +28,30 @@ Input: s = "{[]}"
 Output: true
 '''
 
+class Solution:
+    def isValid(self, s: str) -> bool:
+        st = []
+        n = len(s)
+        if n%2!=0:
+            return False
+        
+        for i in range(n):
+            if s[i]=="[":
+                st.append("]")
+            elif s[i]=="{":
+                st.append("}")
+            elif s[i]=="(":
+                st.append(")")
+            elif not st or s[i]!=st[-1]:
+                return False
+            else:
+                st.pop()
+        return True if not st else False
+
+
+       
+       
+
 #method 1:
 class Solution:
     def isValid(self, s: str) -> bool:
