@@ -19,6 +19,24 @@ Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 '''
 
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices or len(prices)<=1:
+            return 0
+        n = len(prices)
+        min_value = prices[0]
+        curr_profit = float('-inf')
+        max_profit = float('-inf')
+        
+        for i in range(1,n):
+            min_value = min(min_value,prices[i])
+            curr_profit = prices[i] - min_value
+            max_profit = max(max_profit,curr_profit)
+            
+        return max_profit
+
+
+
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
