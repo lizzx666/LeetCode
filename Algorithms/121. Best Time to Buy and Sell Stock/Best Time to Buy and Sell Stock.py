@@ -49,7 +49,23 @@ class Solution:
             
         return max_profit
 
-
+       
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        if n<=1:
+            return 0
+        dp = [[0]*2 for i in range(n)]
+        #cash value of buy stock on day 1(index 0)
+        dp[0][0] = -prices[0]
+        #cash value of don't buy stock on day 1(index 0)
+        dp[0][1] = 0
+        for i in range(1,n):
+            #cash value of hold or buy stock on day i
+            dp[i][0] = max(dp[i-1][0],-prices[i]) 
+            #cash value of didn't hold or sell stock
+            dp[i][1] = max(dp[i-1][1],dp[i-1][0]+prices[i])
+        return dp[-1][1]
 
 
 class Solution:
@@ -62,3 +78,6 @@ class Solution:
             elif prices[i] - min_price > max_profit:
                 max_profit = prices[i] - min_price
         return max_profit
+
+       
+ 
