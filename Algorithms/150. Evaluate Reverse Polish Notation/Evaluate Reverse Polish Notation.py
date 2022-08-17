@@ -34,3 +34,28 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 
 
 '''
+
+
+
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        st = []
+        
+        for item in tokens:
+            if item not in {'+','-','*','/'}:
+                st.append(int(item))
+            else:
+                nums1 = st.pop()
+                nums2 = st.pop()
+                if item == '+':
+                    st.append(nums2+nums1)
+                if item == '-':
+                    st.append(nums2-nums1)
+                if item == '*':
+                    st.append(nums2*nums1)
+                if item == '/':
+                    st.append(int(nums2/nums1))
+                    
+        return int(st.pop())
+
