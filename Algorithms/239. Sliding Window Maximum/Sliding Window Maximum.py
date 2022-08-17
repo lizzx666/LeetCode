@@ -25,3 +25,37 @@ Input: nums = [1], k = 1
 Output: [1]
 
 '''
+
+
+
+class Solution:
+    def __init__(self):
+        self.queue = []
+    
+    def pop(self,value):
+        if self.queue and value == self.queue[0]:
+            self.queue.pop(0)
+    
+    def push(self,value):
+        while self.queue and value > self.queue[-1]:
+            self.queue.pop()
+        self.queue.append(value)
+    
+    def getmax(self):
+        return self.queue[0]
+    
+    
+    
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        que = Solution()
+        result = []
+        for i in range(k):
+            que.push(nums[i])
+            
+        result.append(que.getmax())
+        for i in range(k,len(nums)):
+            que.pop(nums[i-k])
+            que.push(nums[i])
+            result.append(que.getmax())
+            
+        return result
