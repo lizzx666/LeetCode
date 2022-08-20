@@ -13,6 +13,25 @@ Output: [1]
 '''
 
 
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        import collections
+        d = collections.Counter(nums)
+        
+        pri_que = []
+        for key,freq in d.items():
+            heapq.heappush(pri_que,(freq,key))
+            if len(pri_que) > k:
+                heapq.heappop(pri_que)
+        
+        result = [0]*k
+        for i in range(k-1,-1,-1):
+            result[i] = heapq.heappop(pri_que)[1]
+        return result
+    
+    
+
 #Method 1
 def topKFrequent(nums,k):
     s = []
