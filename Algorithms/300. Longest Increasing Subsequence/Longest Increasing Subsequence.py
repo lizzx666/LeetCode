@@ -21,6 +21,22 @@ Output: 1
 
 '''
 
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n<=1:
+            return n
+        dp = [1]*n
+        curr_max = 0
+        for i in range(1,n):
+            for j in range(0,i):
+                if nums[i]>nums[j]:
+                    dp[i] = max(dp[i],dp[j]+1)
+            curr_max = max(dp[i],curr_max)
+
+        return curr_max
+
+
 #dp
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
