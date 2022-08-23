@@ -40,15 +40,19 @@ Explanation: There is no cycle in the linked list.
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        fast, slow = head, head
-        while fast and fast.next:
+        if not head:
+            return None
+        fast = head
+        slow = head
+        while fast.next and fast.next.next:
             fast = fast.next.next
             slow = slow.next
-            if fast == slow:
-                index1 = slow
+            if fast==slow:
+                index1 = fast
                 index2 = head
                 while index1!=index2:
                     index1 = index1.next
                     index2 = index2.next
+                
                 return index2
         return None
