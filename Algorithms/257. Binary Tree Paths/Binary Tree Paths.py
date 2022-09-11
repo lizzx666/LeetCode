@@ -16,6 +16,43 @@ Output: ["1"]
 
 
 '''
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        path = ''
+        result = []
+        if not root:
+            return result
+
+        self.traversal(root,path,result)
+        return result
+         
+    def traversal(self,node,path,result):
+        path+=str(node.val)
+        
+        if node.left==None and node.right==None:
+            result.append(path)
+            
+        if node.left:
+            self.traversal(node.left,path + '->',result)
+            
+            
+        if node.right:
+            self.traversal(node.right,path + '->',result)
+
+
+
+          
+          
+          
+
+
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         def construct_paths(root,path):
