@@ -25,3 +25,28 @@ Output: false
 
 
 '''
+
+
+
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        
+        def calculate_happy(num):
+            sum_val = 0
+            while num:
+                sum_val+=(num%10)**2
+                num = num//10
+            return sum_val
+        
+        res = set()
+        while True:
+            n = calculate_happy(n)
+            if n==1:
+                return True
+            
+            elif n in res:
+                return False
+            
+            else:
+                res.add(n)
