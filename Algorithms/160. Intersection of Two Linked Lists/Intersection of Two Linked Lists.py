@@ -1,13 +1,5 @@
 '''
 
-
-11040
-
-1008
-
-Add to List
-
-Share
 Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
 
 For example, the following two linked lists begin to intersect at node c1:
@@ -57,3 +49,23 @@ Since the two lists do not intersect, intersectVal must be 0, while skipA and sk
 Explanation: The two lists do not intersect, so return null.
 
 '''
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        if headA is None or headB is None:
+            return None
+        cur_a, cur_b = headA, headB
+        
+        while cur_a!=cur_b:
+            cur_a = cur_a.next if cur_a else headB
+            cur_b = cur_b.next if cur_b else headA
+            
+        return cur_a
