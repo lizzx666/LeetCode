@@ -20,3 +20,17 @@ Output: true
 
 
 '''
+
+
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        dm = collections.Counter(magazine)
+        
+        for x in ransomNote:
+            value = dm.get(x)
+            if value==None or value==0:
+                return False
+            else:
+                dm[x]-=1
+        return True
