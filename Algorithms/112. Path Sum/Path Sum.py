@@ -23,6 +23,32 @@ Output: false
 '''
 
 
+
+
+
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+
+        def traversal(node,target):
+            if node.left==None and node.right==None and target==0:
+                return True
+            if node.left==None and node.right==None and target!=0:
+                return False
+            if node.left:
+                if traversal(node.left,target-node.left.val):
+                    return True
+            if node.right:
+                if traversal(node.right,target-node.right.val):
+                    return True
+            return False
+        if not root:
+            return False
+        else:
+            return traversal(root,targetSum-root.val)
+         
+         
+
+
 class Solution:
     def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
         if not root:
