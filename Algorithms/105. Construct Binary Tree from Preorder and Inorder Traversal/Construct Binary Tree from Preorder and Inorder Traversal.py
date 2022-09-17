@@ -37,7 +37,9 @@ class Solution:
         inorder_right = inorder[separator_idx+1:]
         
         preorder_left = preorder[1:1+len(inorder_left)]
-        preorder_right = preorder[len(preorder)-len(inorder_right):]
+        #both are ok
+        preorder_right = preorder[1+len(inorder_left):]
+        #preorder_right = preorder[len(preorder)-len(inorder_right):]
         
         root.left = self.buildTree(preorder_left,inorder_left)
         root.right = self.buildTree(preorder_right,inorder_right)
