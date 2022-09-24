@@ -22,6 +22,8 @@ Output: []
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#recursion
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if not root or root.val==val:
@@ -33,22 +35,21 @@ class Solution:
             result = self.searchBST(root.right,val)
             
         return result
+    
 
-#recursion
-class Solution:
-    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        if root is None or val==root.val:
-            return root
-        
-        elif val < root.val:
-            return self.searchBST(root.left,val)
-        
-        else:
-            return self.searchBST(root.right,val)
-   
 #iteration
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        while root is not None and root.val != val:
-            root = root.left if val<root.val else root.right
-        return root
+        if not root:
+            return root
+        while root:
+            if root.val<val:
+                root = root.right
+            elif root.val>val:
+                root = root.left
+            else:
+                return root
+        return None
+
+
+
