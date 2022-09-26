@@ -19,3 +19,24 @@ Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
 
 '''
+
+
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        curr_max = float('-inf')
+        def bst(root):
+            nonlocal curr_max
+            if root==None:
+                return True
+
+            left = bst(root.left)
+            if curr_max<root.val:
+                curr_max = root.val
+            else:
+                return False
+
+            right = bst(root.right)
+
+            return left and right
+        return bst(root)
