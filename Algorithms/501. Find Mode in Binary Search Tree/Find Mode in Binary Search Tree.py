@@ -25,3 +25,46 @@ Output: [0]
 '''
 
 
+
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        cur = root
+        pre = None
+        count = 0
+        max_count = 0
+        result = []
+        stack = []
+
+        while cur or stack:
+            if cur:
+                stack.append(cur)
+                cur = cur.left
+            else:
+                cur = stack.pop()
+                if pre == None:
+                    count = 1
+                elif pre.val == cur.val:
+                    count+=1
+                else:
+                    count = 1
+                pre = cur
+                if count == max_count:
+                    result.append(cur.val)
+                if count > max_count:
+                    max_count = count
+                    result = []
+                    result.append(cur.val)
+                
+                cur = cur.right
+        return result
+
+
