@@ -21,6 +21,27 @@ Output: 0
 class Solution:
     def countPrimes(self, n: int) -> int:
         from math import sqrt
+        if n <=2:
+            return 0
+        nums = [0,0] + [1] * (n-2)
+        for p in range(2,int(sqrt(n)) + 1):
+            if nums[p]:
+                for multiple in range(p*p,n,p):
+                    nums[multiple] = 0
+        return sum(nums)
+    
+    
+
+
+
+
+
+
+
+
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        from math import sqrt
         if n<=2:
             return 0
         numbers = {}
