@@ -26,3 +26,20 @@ You need to output 2.
 
 
 '''
+
+
+
+
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        s.sort()
+        g.sort()
+
+        cnt = 0
+        j = len(s)-1
+
+        for i in range(len(g)-1,-1,-1):
+            if j>=0 and s[j]>=g[i]:
+                cnt+=1
+                j-=1
+        return cnt
