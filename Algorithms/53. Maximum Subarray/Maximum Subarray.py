@@ -20,7 +20,7 @@ Output: 23
 
 '''
 
-#Greedy Search
+#Greedy Algorithm
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
