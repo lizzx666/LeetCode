@@ -25,3 +25,18 @@ Input: nums = [2,-3,-1,5,-4], k = 2
 Output: 13
 Explanation: Choose indices (1, 4) and nums becomes [2,3,-1,5,4].
 '''
+
+
+class Solution:
+    def largestSumAfterKNegations(self, nums: List[int], k: int) -> int:
+        nums = sorted(nums, key = abs, reverse = True)
+        result = 0
+        for i in range(len(nums)):
+            if nums[i]<0 and k>0:
+                nums[i]*=-1
+                k-=1
+        if k%2==1:
+            nums[-1]*=-1
+        for i in range(len(nums)):
+            result+=nums[i]
+        return result
