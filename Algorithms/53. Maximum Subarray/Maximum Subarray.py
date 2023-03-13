@@ -19,6 +19,25 @@ Input: nums = [5,4,-1,7,8]
 Output: 23
 
 '''
+
+#Greedy Search
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        result = float('-inf')
+        cur_sum = 0
+        for i in range(len(nums)):
+            cur_sum += nums[i]
+            if cur_sum > result:
+                result = cur_sum
+            if cur_sum < 0:
+                cur_sum = 0
+        return result
+
+
+
+
+
 #Brute Force
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
