@@ -17,6 +17,34 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum jump 
 '''
 
 
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        cover = 0
+        if len(nums)==1:
+            return True
+        i = 0
+        while i <= cover:
+            cover = max(cover,i+nums[i])
+            if cover >= len(nums)-1:
+                return True
+            i+=1
+        return False
+    
+    
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        cover = 0
+        if len(nums)==1:
+            return True
+        for i in range(len(nums)):
+            if i<=cover:
+                cover = max(cover,i+nums[i])
+            if cover>=len(nums)-1:
+                return True
+        return False
+
+
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         m = 0
