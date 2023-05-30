@@ -19,6 +19,26 @@ Output: [10]
 
 '''
 
+
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        d = [0]*26
+        for i in range(len(s)):
+            d[ord(s[i]) - ord('a')] = i
+
+        res = []
+        left = 0
+        right = 0
+
+        for i in range(len(s)):
+            right = max(right,d[ord(s[i]) - ord('a')])
+            if i == right:
+                res.append(right-left+1)
+                left = i+1
+        return res
+       
+       
+
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         dic = {l:index for index,l in enumerate(s)}
