@@ -21,3 +21,16 @@ Output: 299
 
 
 '''
+
+
+
+class Solution:
+    def monotoneIncreasingDigits(self, n: int) -> int:
+        st = list(str(n))
+
+        for i in range(len(st)-1,0,-1):
+            if int(st[i])<int(st[i-1]):
+                st[i-1] = str(int(st[i-1])-1)
+                st[i:] = '9'*(len(st) - i)
+
+        return int("".join(st))
