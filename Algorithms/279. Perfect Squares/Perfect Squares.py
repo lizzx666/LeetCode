@@ -20,3 +20,20 @@ Output: 2
 Explanation: 13 = 4 + 9.
 
 '''
+
+
+
+
+class Solution:
+    def numSquares(self, n: int) -> int:
+        dp = [float('inf')]*(n+1)
+
+        dp[0] = 0
+
+        target = int(n**0.5)+1
+
+        for i in range(1,target):
+            for j in range(i*i,n+1):
+                dp[j] = min(dp[j-i*i]+1,dp[j])
+        
+        return dp[-1]
