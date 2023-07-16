@@ -26,3 +26,37 @@ Output: 1
 
 
 '''
+
+
+
+
+
+
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        #separate the elements in nums into 2 parts-> left and right
+        #left is combination of positive part
+        #right is combination of negative part
+        #left + right = sum(nums)
+        #left - right = target
+        #left = (sum(nums)-target)/2
+        #if left is not integer, which means we are not able to composite target
+        #return 0
+        #we are trying to see we have how many different methods can use elements in nums
+        #to composite to left
+
+        sum_nums = sum(nums)
+        if abs(target) > sum_nums:
+            return 0
+        if (sum_nums-target)%2!=0:
+            return 0
+        else:
+            left = (sum_nums-target)//2
+            dp = [0]*(left+1)
+            dp[0]=1
+
+            for i in range(len(nums)):
+                for j in range(left,nums[i]-1,-1):
+                    dp[j]+=dp[j-nums[i]]
+            
+            return dp[left]
