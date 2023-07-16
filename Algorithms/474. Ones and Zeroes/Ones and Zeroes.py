@@ -22,3 +22,26 @@ Explanation: The largest subset is {"0", "1"}, so the answer is 2.
 
 
 '''
+
+
+
+
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        dp = [[0 for i in range(n+1)] for j in range(m+1)]
+        dp[0][0]=0
+
+        for st in strs:
+            x=0
+            y=0
+            for char in st:
+                if char=='0':
+                    x+=1
+                elif char=='1':
+                    y+=1
+
+            for i in range(m,x-1,-1):
+                for j in range(n,y-1,-1):
+                    dp[i][j]=max(dp[i][j],dp[i-x][j-y]+1)
+        
+        return dp[m][n]
