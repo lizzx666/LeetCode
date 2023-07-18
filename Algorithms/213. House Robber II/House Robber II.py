@@ -25,6 +25,37 @@ Output: 0
 
 '''
 
+
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        #to deal with circle
+        #we can make it a linear list(house rob i) by only considering non-head part or only consider non-tail part
+        #then take the best out of these 2 situations
+        if len(nums)==1:
+            return nums[0]
+        head_nums = nums[:-1]
+        tail_nums = nums[1:]
+
+        max_head = self.rob_func(head_nums)
+        max_tail = self.rob_func(tail_nums)
+
+        return max(max_head,max_tail)
+
+    def rob_func(self,nums):
+        if len(nums)==1:
+            return nums[0]
+        dp = [0]*len(nums)
+        dp[0] = nums[0]
+        dp[1] = max(nums[0],nums[1])
+
+        for i in range(2,len(nums)):
+            dp[i] = max(dp[i-2]+nums[i],dp[i-1])
+        return dp[-1]
+
+
+
+
 class Solution:
     def rob(self, nums: List[int]) -> int:
         if not nums:
