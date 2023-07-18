@@ -20,6 +20,27 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 '''
 
 
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices)==1:
+            return 0
+        
+        dp = [[0 for i in range(2)] for j in range(len(prices))]
+
+        #dp[i][0] means on day i, the max value if we hold this stock
+        #dp[i][1] means on day i, the max value if we don't hold this stock
+
+        dp[0][0] = -prices[0]
+        dp[0][1] = 0
+
+        for i in range(1,len(prices)):
+            dp[i][0] = max(dp[i-1][0],-prices[i])
+            dp[i][1] = max(dp[i-1][1],dp[i-1][0]+prices[i])
+
+        return dp[-1][1]
+
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         min_value = float('inf')
