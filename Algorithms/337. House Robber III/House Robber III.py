@@ -36,8 +36,8 @@ class Solution:
         
     def rob_tree(self,cur):
         #store each node's decision in a list ls
-        #ls[0] means the biggest value if skip cur node
-        #ls[1] means the biggest value if steal cur node
+        #ls[0] means the biggest value can get if skip cur node
+        #ls[1] means the biggest value can get if steal cur node
         if not cur:
             return [0,0]
         left_dp = self.rob_tree(cur.left)
