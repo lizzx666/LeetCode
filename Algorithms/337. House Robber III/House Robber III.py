@@ -20,6 +20,37 @@ Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
 
 '''
 
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def rob(self, root: Optional[TreeNode]) -> int:
+        rs = self.rob_tree(root)
+        return max(rs[0],rs[1])
+        
+    def rob_tree(self,cur):
+        #store each node's decision in a list ls
+        #ls[0] means the biggest value if skip cur node
+        #ls[1] means the biggest value if steal cur node
+        if not cur:
+            return [0,0]
+        left_dp = self.rob_tree(cur.left)
+        right_dp = self.rob_tree(cur.right)
+
+        #if steal cur node
+        val_1 = cur.val+left_dp[0]+right_dp[0]
+        #if skip cur node
+        val_2 = max(left_dp[0],left_dp[1])+max(right_dp[0],right_dp[1])
+
+        return [val_2,val_1]
+        
+
 class Solution:
     def rob(self, root: TreeNode) -> int:
         def helper(node):
