@@ -29,6 +29,29 @@ Input: prices = [1]
 Output: 0
 '''
 
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        dp = [[0 for i in range(4)] for j in range(len(prices))]
+
+        #dp[i][0]:first hold
+        #dp[i][1]:first unhold
+        #dp[i][2]:second hold
+        #dp[i][3]:second unhold
+
+        dp[0][0]=-prices[0]
+        dp[0][1]=0
+        dp[0][2]=-prices[0]
+        dp[0][3]=0
+
+        for i in range(1,len(prices)):
+            dp[i][0] = max(dp[i-1][0],-prices[i])
+            dp[i][1] = max(dp[i-1][1],dp[i-1][0]+prices[i])
+            dp[i][2] = max(dp[i-1][2],dp[i-1][1]-prices[i])
+            dp[i][3] = max(dp[i-1][3],dp[i-1][2]+prices[i])
+
+        return max(dp[-1][1],dp[-1][3])
+
 def maxProfit(prices):
     t1_buy, t2_buy = -float('inf'),-float('inf')
     t1_sell, t2_sell = 0,0
