@@ -27,6 +27,19 @@ Explanation: In this case, no transaction is done, i.e., max profit = 0.
 
 '''
 
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        dp = [[0 for i in range(2)] for j in range(len(prices))]
+        #dp[i][0]:record the largest value if hold stock on day i
+        #dp[i][1]:record the largest value if don't hold stock on day i        
+        dp[0][0] = -prices[0]
+        dp[0][1] = 0
+
+        for i in range(1,len(prices)):
+            dp[i][0] = max(dp[i-1][0],dp[i-1][1]-prices[i])
+            dp[i][1] = max(dp[i-1][1],dp[i-1][0]+prices[i])
+        
+        return dp[-1][1]
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
