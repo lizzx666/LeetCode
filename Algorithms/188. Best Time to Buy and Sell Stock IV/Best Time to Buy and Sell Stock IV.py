@@ -20,6 +20,37 @@ Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-
 '''
 
 
+
+
+
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        dp = [[0 for i in range(2*k+1)] for j in range(len(prices))]
+
+        #dp[i][0]:no buy/sell
+        #dp[i][1]:first buy
+        #dp[i][2]:first sell
+        #...
+
+        #dp[0][0]=0
+        #dp[0][1]=-prices[0]
+        #dp[0][2]=0
+        #...
+
+        for j in range(1,2*k,2):
+            dp[0][j]=-prices[0]
+
+        for i in range(1,len(prices)):
+            for j in range(0,2*k,2):
+                dp[i][j+1]=max(dp[i-1][j+1],dp[i-1][j]-prices[i])
+                dp[i][j+2]=max(dp[i-1][j+2],dp[i-1][j+1]+prices[i])
+
+        return dp[-1][2*k]
+
+
+
+
+
 class Solution:
     def maxProfit(self, k: int, prices: List[int]) -> int:
         n = len(prices)
