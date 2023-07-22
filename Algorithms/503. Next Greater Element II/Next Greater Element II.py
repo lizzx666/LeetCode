@@ -20,3 +20,39 @@ Output: [2,3,4,-1,4]
 
 
 '''
+
+#method 2
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        res = [-1]*len(nums)
+        stk = [0]
+
+        for i in range(1,len(nums)*2):
+            j = i%(len(nums))
+            if nums[j]<=nums[stk[-1]]:
+                stk.append(j)    
+
+            else:
+                while stk and nums[j]>nums[stk[-1]]:
+                    res[stk[-1]] = nums[j] 
+                    stk.pop()
+                stk.append(j)
+        return res   
+
+
+#method 1
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        new_nums = nums+nums
+        stk = [0]
+        res = [-1]*len(new_nums)
+
+        for i in range(1,len(new_nums)):
+            if new_nums[i]<=new_nums[stk[-1]]:
+                stk.append(i)
+            else:
+                while stk and new_nums[i]>new_nums[stk[-1]]:
+                    res[stk[-1]]=new_nums[i]
+                    stk.pop()
+                stk.append(i)
+        return res[:len(nums)]
