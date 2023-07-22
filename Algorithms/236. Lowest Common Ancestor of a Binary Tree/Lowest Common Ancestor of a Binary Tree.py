@@ -22,6 +22,36 @@ Input: root = [1,2], p = 1, q = 2
 Output: 1
 
 '''
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root==p or root==q or root is None:
+            return root
+
+        left = self.lowestCommonAncestor(root.left,p,q)
+        right = self.lowestCommonAncestor(root.right,p,q)
+
+        if left and right:
+            return root
+        elif left is None and right:
+            return right
+        elif left and right is None:
+            return left
+        else:
+            return None
+
+
+
+
+
 #merge left null and right null with other situation
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
