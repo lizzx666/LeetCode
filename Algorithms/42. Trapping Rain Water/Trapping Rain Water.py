@@ -14,3 +14,33 @@ Input: height = [4,2,0,3,2,5]
 Output: 9
 
 '''
+
+
+
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stk = [0]
+        res = 0
+        if len(height)==1:
+            return res
+        
+        for i in range(1,len(height)):
+            if height[i]<height[stk[-1]]:
+                stk.append(i)
+            elif height[i]==height[stk[-1]]:
+                stk.pop()
+                stk.append(i)    
+            else:
+                while stk and height[i]>height[stk[-1]]:
+                    mid = height[stk[-1]]
+                    stk.pop()
+                    if stk:
+                        h = min(height[i],height[stk[-1]])-mid 
+                        w = i - stk[-1] -1
+                        a=h*w
+                        res+=a
+
+                stk.append(i)
+
+        return res
