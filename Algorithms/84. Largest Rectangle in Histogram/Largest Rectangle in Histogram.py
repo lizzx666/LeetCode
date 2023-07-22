@@ -18,3 +18,34 @@ Output: 4
 
 
 '''
+
+
+
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+
+        if len(heights)==1:
+            return heights[0]
+
+        res = 0
+        stk = [0]
+        heights.insert(0,0)
+        heights.append(0)
+        
+        for i in range(1,len(heights)):
+            if heights[i]>heights[stk[-1]]:
+                stk.append(i)
+            elif heights[i]==heights[stk[-1]]:
+                stk.pop()
+                stk.append(i)
+            else:
+                while stk and heights[i]<heights[stk[-1]]:
+                    mid = stk[-1]
+                    stk.pop()
+                    if stk:
+                        w = i-stk[-1]-1
+                        h = heights[mid]
+                        res = max(res,h*w)
+                stk.append(i)
+        return res
