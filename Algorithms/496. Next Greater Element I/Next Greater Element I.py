@@ -28,6 +28,30 @@ Explanation: The next greater element for each value of nums1 is as follows:
 
 '''
 
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res = [-1]*len(nums1)
+        stk = [0]
+
+        d1 = {}
+        for i in range(len(nums1)):
+            d1[nums1[i]]=i
+        
+        for i in range(1,len(nums2)):
+            if nums2[i]<=nums2[stk[-1]]:
+                stk.append(i)
+            else:
+                while stk and nums2[i]>nums2[stk[-1]]:
+                    if nums2[stk[-1]] in d1.keys():
+                        ind = d1[nums2[stk[-1]]]
+                        res[ind] = nums2[i]
+                    stk.pop()
+                stk.append(i)
+        return res
+
+
+
+
 #Stack
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
