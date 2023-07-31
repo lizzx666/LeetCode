@@ -44,7 +44,6 @@ class Solution:
             if self.isvalid(s,start_index,i):
                 sub = s[start_index:i+1]
                 cur.append(sub)
-                print(cur)
                 self.backtracking(s,i+1,cur,res)
                 cur.pop()
 
