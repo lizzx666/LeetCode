@@ -19,6 +19,31 @@ Output: [[],[0]]
 '''
 
 
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        path = []
+        res = []
+        self.backtracking(nums,0,path,res)
+        return res
+
+    
+    def backtracking(self,nums,start_index,path,res):
+        res.append(path[:])
+        if start_index >= len(nums): #actually can skip
+            return
+        
+        for i in range(start_index,len(nums)):
+            path.append(nums[i])
+            self.backtracking(nums,i+1,path,res)
+            path.pop()
+
+
+
+
+
+
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         
