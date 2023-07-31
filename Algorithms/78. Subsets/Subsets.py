@@ -22,6 +22,31 @@ Output: [[],[0]]
 
 
 class Solution:
+
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        path = []
+        res = []
+        used = [0]*len(nums)
+        nums.sort()
+        self.backtracking(nums,0,used,path,res)
+        return res
+    
+    def backtracking(self,nums,start_index,used,path,res):
+        res.append(path[:])
+        for i in range(start_index,len(nums)):
+            if i>0 and nums[i]==nums[i-1] and used[i-1]==0:
+                continue
+            
+            path.append(nums[i])
+            used[i]=1
+            self.backtracking(nums,i+1,used,path,res)
+            path.pop()
+            used[i]=0
+
+
+
+
+class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         path = []
         res = []
