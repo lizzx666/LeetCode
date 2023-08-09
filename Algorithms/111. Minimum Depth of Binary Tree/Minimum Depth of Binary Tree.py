@@ -20,12 +20,43 @@ Output: 5
 
 
 
+
+
+
+
+
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        return self.get_height(root)
+
+    def get_height(self,node):
+        if not node:
+            return 0
+        
+        left_height = self.get_height(node.left)
+        right_height = self.get_height(node.right)
+
+        if not node.left and node.right:
+            return 1+right_height
+        if node.left and not node.right:
+            return 1+left_height
+        
+        return 1+min(left_height,right_height)
+
+
+
+
+
+
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
